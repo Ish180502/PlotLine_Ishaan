@@ -8,8 +8,8 @@ export const addToCart = (group, subgroup, service, timeSlot, comment) => async 
         const {
             userSignin: { userInfo },
         } = getState();
-        const serviceData = await Axios.get(`/api/services/${group}/${subgroup}/${service}`)
-        const { data } = await Axios.put('/api/users/addToCart', {
+        const serviceData = await Axios.get(`https://swift-serve-bt21.onrender.com/api/services/${group}/${subgroup}/${service}`)
+        const { data } = await Axios.put(`https://swift-serve-bt21.onrender.com/api/users/addToCart', {
             serviceId: serviceData.data._id,
             group,
             subgroup,
@@ -60,7 +60,7 @@ export const removeFromCart = (id) => async (dispatch, getState) => {
         const {
             userSignin: { userInfo },
         } = getState();
-        const { data } = await Axios.delete(`/api/users/removeFromCart/${id}`, {
+        const { data } = await Axios.delete(`https://swift-serve-bt21.onrender.com/api/users/removeFromCart/${id}`, {
             headers: {
                 Authorization: `Bearer ${userInfo.token}`,
             },
@@ -82,7 +82,7 @@ export const emptyCart = () => async (dispatch, getState) => {
         const {
             userSignin: { userInfo },
         } = getState();
-        const { data } = await Axios.delete('/api/users/emptyCart', {
+        const { data } = await Axios.delete('https://swift-serve-bt21.onrender.com/api/users/emptyCart', {
             headers: {
                 Authorization: `Bearer ${userInfo.token}`,
             },
