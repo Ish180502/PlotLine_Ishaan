@@ -12,7 +12,7 @@ dotenv.config()
 const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-mongoose.connect('mongodb://127.0.0.1:27017/mydatabase', {
+mongoose.connect(process.env.DATABASE, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
@@ -39,6 +39,6 @@ app.use('/api/orders', orderRouter);
 app.use((err, req, res, next) => {
     res.status(500).send({ message: err.message })
 })
-app.listen(5000, () => {
+app.listen(process.env.PORT || 5000, () => {
     console.log("server started at localhost:5000")
 })
