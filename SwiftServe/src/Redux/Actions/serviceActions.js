@@ -6,7 +6,7 @@ export const listServices = () => async (dispatch) => {
         type: SERVICES_LIST_REQUEST
     });
     try {
-        const { data } = await Axios.get('/api/services')
+        const { data } = await Axios.get('https://swift-serve-bt21.onrender.com/api/services')
         dispatch({
             type: SERVICES_LIST_SUCCESS,
             payload: data
@@ -25,7 +25,7 @@ export const detailsServices = (services_group_subgroup) => async (dispatch) => 
         payload: services_group_subgroup
     })
     try {
-        const { data } = await Axios.get(`/api/services/${services_group_subgroup}`);
+        const { data } = await Axios.get(`https://swift-serve-bt21.onrender.com/api/services/${services_group_subgroup}`);
         dispatch({ type: SERVICES_DETAILS_SUCCESS, payload: data });
     } catch (error) {
         dispatch({
@@ -45,7 +45,7 @@ export const createServiceGroup = () => async (dispatch, getState) => {
     } = getState();
     try {
         const { data } = await Axios.post(
-            '/api/services/add/group',
+            'https://swift-serve-bt21.onrender.com/api/services/add/group',
             {},
             {
                 headers: { Authorization: `Bearer ${userInfo.token}` },
@@ -70,7 +70,7 @@ export const createService = (group, subgroup, name, price, details, availabilit
     } = getState();
     try {
         const { data } = await Axios.put(
-            `/api/services/add/service/${group}/${subgroup}`,
+            `https://swift-serve-bt21.onrender.com/api/services/add/service/${group}/${subgroup}`,
             { name, price, details, availability },
             {
                 headers: { Authorization: `Bearer ${userInfo.token}` },
