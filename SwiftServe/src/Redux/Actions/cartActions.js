@@ -9,7 +9,7 @@ export const addToCart = (group, subgroup, service, timeSlot, comment) => async 
             userSignin: { userInfo },
         } = getState();
         const serviceData = await Axios.get(`https://swift-serve-bt21.onrender.com/api/services/${group}/${subgroup}/${service}`)
-        const { data } = await Axios.put(`https://swift-serve-bt21.onrender.com/api/users/addToCart', {
+        const { data } = await Axios.put('https://swift-serve-bt21.onrender.com/api/users/addToCart', {
             serviceId: serviceData.data._id,
             group,
             subgroup,
@@ -22,7 +22,7 @@ export const addToCart = (group, subgroup, service, timeSlot, comment) => async 
 
         }, {
             headers: {
-                Authorization: `Bearer ${userInfo.token}`,
+                Authorization: `Bearer ${userInfo.token}`
             },
         });
         // dispatch({ type: USER_REFRESH, payload: data })
