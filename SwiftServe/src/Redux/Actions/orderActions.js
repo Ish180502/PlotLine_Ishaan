@@ -25,7 +25,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
         const {
             userSignin: { userInfo },
         } = getState();
-        const { data } = await axios.post('/api/orders', order, {
+        const { data } = await axios.post('https://swift-serve-bt21.onrender.com/api/orders', order, {
             headers: {
                 Authorization: `Bearer ${userInfo.token}`,
             },
@@ -51,7 +51,7 @@ export const getOrderDetails = (orderId) => async (dispatch, getState) => {
         userSignin: { userInfo },
     } = getState();
     try {
-        const { data } = await axios.get(`/api/orders/${orderId}`, {
+        const { data } = await axios.get(`https://swift-serve-bt21.onrender.com/api/orders/${orderId}`, {
             headers: { Authorization: `Bearer ${userInfo.token}` },
         });
         dispatch({ type: ORDER_DETAILS_SUCCESS, payload: data });
@@ -71,7 +71,7 @@ export const fetchOrderHistory = () => async (dispatch, getState) => {
         const {
             userSignin: { userInfo },
         } = getState();
-        const { data } = await axios.get('/api/orders/user/history', {
+        const { data } = await axios.get('https://swift-serve-bt21.onrender.com/api/orders/user/history', {
             headers: {
                 Authorization: `Bearer ${userInfo.token}`,
             },
@@ -96,7 +96,7 @@ export const initiateTransaction = (orderId) => async (dispatch, getState) => {
     } = getState();
     console.log(userInfo.token)
     try {
-        const { data } = await axios.post(`/api/orders/initiateTransaction/${orderId}`, {
+        const { data } = await axios.post(`https://swift-serve-bt21.onrender.com/api/orders/initiateTransaction/${orderId}`, {
             headers: { Authorization: `Bearer ${userInfo.token}` },
         });
         dispatch({ type: INITIATE_TRANSACTION_SUCCESS, payload: data });
@@ -118,7 +118,7 @@ export const payOrder = (order, paymentResult) => async (
         userSignin: { userInfo },
     } = getState();
     try {
-        const { data } = axios.put(`/api/orders/${order._id}/paymentStatus`, paymentResult, {
+        const { data } = axios.put(`https://swift-serve-bt21.onrender.com/api/orders/${order._id}/paymentStatus`, paymentResult, {
             headers: { Authorization: `Bearer ${userInfo.token}` },
         });
         dispatch({ type: ORDER_PAY_SUCCESS, payload: data });
