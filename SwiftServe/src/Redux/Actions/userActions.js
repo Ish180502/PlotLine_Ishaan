@@ -4,7 +4,7 @@ import { GET_USER, REMOVE_SAVED_ADDRESS_FAIL, REMOVE_SAVED_ADDRESS_REQUEST, REMO
 export const signin = (email, password) => async (dispatch) => {
     dispatch({ type: USER_SIGNIN_REQUEST, payload: { email, password } })
     try {
-        const { data } = await Axios.post('/api/users/signin', { email, password })
+        const { data } = await Axios.post('https://swift-serve-bt21.onrender.com/api/users/signin', { email, password })
         dispatch({ type: USER_SIGNIN_SUCCESS, payload: data })
         localStorage.setItem('userInfo', JSON.stringify(data))
     } catch (error) {
@@ -20,7 +20,7 @@ export const signin = (email, password) => async (dispatch) => {
 export const signup = (name, email, password) => async (dispatch) => {
     dispatch({ type: USER_SIGNUP_REQUEST, payload: { name, email, password } })
     try {
-        const { data } = await Axios.post('/api/users/signup', { name, email, password })
+        const { data } = await Axios.post('https://swift-serve-bt21.onrender.com/api/users/signup', { name, email, password })
         dispatch({ type: USER_SIGNUP_SUCCESS, payload: data })
         dispatch({ type: USER_SIGNIN_SUCCESS, payload: data })
         localStorage.setItem('userInfo', JSON.stringify(data))
@@ -45,7 +45,7 @@ export const getUser = () => async (dispatch, getState) => {
     const {
         userSignin: { userInfo },
     } = getState();
-    const { data } = await Axios.get('/api/users/currentUser', {
+    const { data } = await Axios.get('https://swift-serve-bt21.onrender.com/api/users/currentUser', {
         headers: {
             Authorization: `Bearer ${userInfo.token}`,
         }
@@ -59,7 +59,7 @@ export const saveAddress = (address) => async (dispatch, getState) => {
         const {
             userSignin: { userInfo },
         } = getState();
-        const { data } = await Axios.put('/api/users/saveAddress', address, {
+        const { data } = await Axios.put('https://swift-serve-bt21.onrender.com/api/users/saveAddress', address, {
             headers: {
                 Authorization: `Bearer ${userInfo.token}`,
             },
@@ -81,7 +81,7 @@ export const removeSavedAddress = (id) => async (dispatch, getState) => {
         const {
             userSignin: { userInfo },
         } = getState();
-        const { data } = await Axios.delete(`/api/users/removeSavedAddress/${id}`, {
+        const { data } = await Axios.delete(`https://swift-serve-bt21.onrender.com/api/users/removeSavedAddress/${id}`, {
             headers: {
                 Authorization: `Bearer ${userInfo.token}`,
             },
@@ -104,7 +104,7 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
         userSignin: { userInfo },
     } = getState();
     try {
-        const { data } = await Axios.put(`/api/users/profile`, user, {
+        const { data } = await Axios.put(`https://swift-serve-bt21.onrender.com/api/users/profile`, user, {
             headers: { Authorization: `Bearer ${userInfo.token}` },
         });
         dispatch({ type: USER_UPDATE_PROFILE_SUCCESS, payload: data });
