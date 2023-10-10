@@ -5,7 +5,7 @@ Specifications:
 2. Service Selection
 3. View Cart
 4. Clear Cart or can add more services.
-5. SA,SB,SC taxes applied on the basis of Cart value
+5. SA,SB,SC taxes applied on the basis of service selected
 6. View Total Bill
 7. Orders Placed Section
 
