@@ -76,7 +76,7 @@ const OrderCheckOut = () => {
 
 
     const addPayTmScript = async (orderId, txnToken, amount) => {
-        const { data } = await axios.get('/api/orders/config/paytm', {
+        const { data } = await axios.get('https://swift-serve-bt21.onrender.com/api/orders/config/paytm', {
             headers: { Authorization: `Bearer ${userInfo.token}` }
         });
         const src = `https://securegw-stage.paytm.in/merchantpgpui/checkoutjs/merchants/${data}.js`
